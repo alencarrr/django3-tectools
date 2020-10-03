@@ -1,0 +1,82 @@
+body {
+  background-color: white;
+}
+
+table, th, td {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid black;
+  border-style: solid;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th {
+  text-align: center;
+  background-color: bisque;
+  height: 30px;
+  padding: 5px;
+}
+
+.titulo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 41px;
+  text-align: center;
+  padding: 5px;
+}
+
+.subtitulo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  text-align: center;
+  padding: 5px;
+}
+
+.titulo-th {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 5px;
+}
+
+.titulo-td {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 5px;
+}
+
+.campo-th, .texto-th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px;
+}
+
+.campo-td, .texto-td {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px;
+}
+
+.cor-destino-th {
+  background-color: darkorange;
+}
+
+.cor-neutra-th {
+  background-color: darkgray;
+}
+
+.largura-20 {
+  max-width: 20%;
+  min-width: 20%;
+}
+
+.largura-10 {
+  max-width: 10%;
+  min-width: 10%;
+}
+
+.largura-25 {
+  max-width: 25%;
+  min-width: 25%;
+}

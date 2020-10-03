@@ -1,0 +1,67 @@
+{% extends 'base.html' %} 
+{% block title %}Mapa de Carga{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="#">Novo Campo</a></li>
+{% endblock %}
+
+
+{% block conteudo %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.mapa.label_tag }} {{ form.mapa }}
+    <div class="d-flex flex-row mb-2" style="background-color:aquamarine;">
+        <section class="flex-fill p-3" style="background-color:chocolate;">
+           
+            <h3>ORIGEM</h3>
+           
+            <div>
+    
+                <div style="display: flex; flex-direction: column">
+    
+                    {{ form.tabela_o.label_tag }} {{ form.tabela_o }}
+                    {{ form.campo_o.label_tag }} {{ form.campo_o }}
+                    {{ form.campo_o_tipo.label_tag }} {{ form.campo_o_tipo }}
+                    {{ form.campo_o_tam.label_tag }} {{ form.campo_o_tam }}
+                    {{ form.campo_o_dec.label_tag }} {{ form.campo_o_dec }}
+                    {{ form.campo_o_validos.label_tag }} {{ form.campo_o_validos }}
+                    {{ form.campo_o_formato.label_tag }} {{ form.campo_o_formato }}
+    
+                </div>
+    
+    
+            </div>
+        </section>
+        <section class="flex-fill p-3" style="background-color:azure;">
+            <h3 align="CENTER">REGRA DE CONVERSÃO</h3>
+            <div style="display: flex; flex-direction: column">
+                {{ form.regra_conversao }}
+            </div>
+        </section>
+        <section class="flex-fill p-3" style="background-color:yellow;">
+           
+            <h3>DESTINO</h3>
+           
+            <div>
+                <div style="display: flex; flex-direction: column">
+                    {{ form.tabela_d.label_tag }} {{ form.tabela_d }}
+                    {{ form.campo_d.label_tag }} {{ form.campo_d }}
+                    {{ form.campo_d_tipo.label_tag }} {{ form.campo_d_tipo }}
+                    {{ form.campo_d_tam.label_tag }} {{ form.campo_d_tam }}
+                    {{ form.campo_d_dec.label_tag }} {{ form.campo_d_dec }}
+                    {{ form.campo_d_validos.label_tag }} {{ form.campo_d_validos }}
+                    {{ form.campo_d_formato.label_tag }} {{ form.campo_d_formato }}
+                </div>
+            </div>
+        </section>
+    </div>        
+
+
+    <p><button class="btn btn-primary" type="submit">Salvar</button>
+        <button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
+</form>
+
+{% endblock conteudo %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% block title %}Mapa de Carga{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="{% url 'core:add-mapa' %}">Novo Mapa</a></li>
+{% endblock %}
+
+
+{% block conteudo %}
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+ 
+    </table>
+    <p><button class="btn btn-primary" type="submit">Salvar</button>
+        <button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
+</form>
+
+{% endblock conteudo %}

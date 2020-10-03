@@ -1,0 +1,50 @@
+{% extends 'base.html' %} 
+{% block title %}Mapa de Carga{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="{% url 'core:lista-mapa' %}">Lista de Mapas</a></li>
+{% endblock %}
+
+
+{% block conteudo %}
+
+<table border='1px solid blue' style="width: 100%;">
+<thead style='background-color:bisque;'>
+<tr>
+    <th>Nome</th>
+    <th>Descrição</th>
+    <th>Sistema Origem</th>
+    <th>Sistema Destino</th>
+    <th></th>
+    <th>Ações</th>
+</tr>
+
+</thead>
+
+<tbody>
+    {% for mapa in object_list %}
+    <tr>
+        <td>{{ mapa.nome }}</td>
+        <td>{{ mapa.descricao }}</td>
+        <td>{{ mapa.sistema_origem }}</td>
+        <td>{{ mapa.sistema_destino }}</td>
+        <td><a href="{% url 'core:lista-campo' mapa.id %}">Mapear Campos</a></td>
+        <td><div>
+            <a href="{% url 'core:view-mapa' mapa.id %}"><i class="fas fa-eye"></i>&ensp;</a>
+            <a href="{% url 'core:edit-mapa' mapa.id %}"><i class="fas fa-edit"></i>&ensp;</a>
+            <a href="{% url 'core:del-mapa' mapa.id %}"><i class="fas fa-trash-alt"></i>&ensp;</a>
+            <a href="{% url 'report:imprime-mapa' mapa.id %}"  target="_blank" rel="noopener"><i class="fas fa-print"></i></a>
+        </div></td>
+    </tr>
+    {% endfor %}
+
+</tbody>
+
+</table>
+<p></p>
+<a href="{% url 'core:add-mapa' %}">Novo registro</a>
+
+
+{% endblock %}

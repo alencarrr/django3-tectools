@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    <title>Mapa de Carga</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1 class="titulo">Apontamento de Horas</h1>
+    <h3 class="subtitulo">{{ date }}</h3>
+    <table class="header-mapa">
+        <thead>
+            <th class="titulo-th">Período</th>
+            <th class="titulo-th">Projeto</th>
+            <th class="titulo-th">Recurso</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="titulo-td">
+                    {{ apontamentos.0.periodo }}
+                </td>
+                <td class="titulo-td">
+                    {{ apontamentos.0.projeto }}
+                </td>
+                <td class="titulo-td">
+                    {{ apontamentos.0.recurso }}<p></p>{{ apontamentos.0.recurso.fornecedor.nome }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p></p>
+
+
+    <table>
+        
+            <thead>
+            <tr>
+                <th escope="col" class="col1">Data</th>
+                <th escope="col" class="col2">Hora Inicial</th>
+                <th escope="col" class="col3">Hora Final</th>
+                <th escope="col" class="col4">Atividade</th>
+                <th escope="col" class="col5">Horas</th>
+            </tr>   
+    </thead>           
+    <tbody>
+    {% for apontamento in apontamentos %}
+            <tr>
+                <td escope="row" class="col1">{{ apontamento.data_apontamento | date:'d/m/Y' }}</td>
+                <td escope="row" class="col2">{{ apontamento.hora_inicial }}</td>
+                <td escope="row" class="col3">{{ apontamento.hora_final }}</td>
+                <td escope="row" class="col4">{{ apontamento.descricao }}</td>
+                <td escope="row" class="col5">{{ apontamento.subtotal }}</td>
+            </tr>    
+    {% endfor %}
+        </tbody>
+    </table>
+    <div class="total">
+    <p>Total de Horas: {{ total }}</p>
+    </div>
+</body>
+</html>

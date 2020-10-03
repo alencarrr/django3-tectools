@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% block title %}Mapa Detalhado{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="{% url 'core:add-mapa' %}">Novo Mapa</a></li>
+{% endblock %}
+
+{% block conteudo %}
+    
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form> 
+
+
+
+{% endblock %}

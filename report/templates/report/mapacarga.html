@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    <title>Mapa de Carga</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1 class="titulo">Mapa de Carga</h1>
+    <h3 class="subtitulo">{{ date }}</h3>
+    <table class="table">
+        <thead>
+            <th escope="col" class="titulo-th cor-neutra-th largura-25">Mapa</th>
+            <th escope="col" class="titulo-th cor-neutra-th largura-25">Descrição</th>
+            <th escope="col" class="titulo-th largura-25">Sistema Origem</th>
+            <th escope="col" class="titulo-th cor-destino-th largura-25">Sistema Destino</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td escope="row" class="titulo-td largura-25">
+                    {{ mapa.nome }}
+                </td>
+                <td escope="row" class="titulo-td largura-25">
+                    {{ mapa.descricao }}
+                </td>
+                <td escope="row" class="titulo-td largura-25">
+                    {{ mapa.sistema_origem }}
+                </td>
+                <td escope="row" class="titulo-td largura-25">
+                    {{ mapa.sistema_destino }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p></p>
+    
+    {% for campo in campos %}
+       <table>
+           <thead>
+
+                <th scope="col" class="campo-th largura-10">Tabela Origem</th>
+                <th scope="col" class="campo-th largura-10">Campo Origem</th>
+                <th scope="col" class="campo-th largura-10">Tipo</th>
+                <th scope="col" class="campo-th largura-10">Tamanho</th>
+                <th scope="col" class="campo-th largura-10">Dec</th>
+
+                <th scope="col" class="campo-th cor-destino-th largura-10">Tabela Destino</th>
+                <th scope="col" class="campo-th cor-destino-th largura-10">Campo Destino</th>
+                <th scope="col" class="campo-th cor-destino-th largura-10">Tipo</th>
+                <th scope="col" class="campo-th cor-destino-th largura-10">Tamanho</th>
+                <th scope="col" class="campo-th cor-destino-th largura-10">Dec</th>
+
+        </thead>
+        <tbody>
+ 
+                <td escope="row" class="campo-td largura-10">{{ campo.tabela_o }}</td>
+                <td escope="row" class="campo-td largura-10">{{ campo.campo_o }}</td>
+                <td escope="row" class="campo-td largura-10">{{ campo.get_campo_o_tipo_display }}</td>
+                <td escope="row" class="campo-td largura-10">{{ campo.campo_o_tam }}</td>
+                <td escope="row" class="campo-td largura-10">{{ campo.campo_o_dec }}</td>
+
+                <td escope="row" class="campo-td largura-10">{{ campo.tabela_d }}</td>
+                <td escope="row" class="campo-td largura-10">{{ campo.campo_d }}</td>
+                <td escope="row" class="campo-td largura-10">{{ campo.get_campo_d_tipo_display }}</td>
+                <td escope="row" class="campo-td largura-10">{{ campo.campo_d_tam }}</td>
+                <td escope="row" class="campo-td largura-10">{{ campo.campo_d_dec }}</td>
+
+    </tbody>
+        </table>
+        <table>
+            <thead>
+
+
+                <th escope="col" class="texto-th largura-20">Valores Válidos</th>
+                <th escope="col" class="texto-th largura-20">Formato</th>
+                <th escope="col" class="texto-th cor-neutra-th largura-20">Regra de Conversão</th>
+                <th escope="col" class="texto-th cor-destino-th largura-20">Valores Válidos</th>
+                <th escope="col" class="texto-th cor-destino-th largura-20">Formato</th>
+
+        </thead>
+        <tbody>
+                <td escope="row" class="texto-td largura-20">{{ campo.campo_o_validos }}</td>
+                <td escope="row" class="texto-td largura-20">{{ campo.campo_o_formato }}</td>
+                <td escope="row" class="texto-td largura-20">{{ campo.regra_conversao}}</td>
+                <td escope="row" class="texto-td largura-20">{{ campo.campo_d_validos }}</td>
+                <td escope="row" class="texto-td largura-20">{{ campo.campo_d_formato }}</td>
+
+        </tbody>
+
+    </table>
+        <p></p>
+    {% endfor %}
+
+</body>
+</html>

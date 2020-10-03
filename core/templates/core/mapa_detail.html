@@ -1,0 +1,47 @@
+{% extends 'base.html' %} 
+{% block title %}Mapa de Carga{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="{% url 'core:view-mapa' mapa.id %}">Detalhe do Mapa</a></li>
+{% endblock %}
+
+
+{% block conteudo %}
+
+<table>
+
+    <tr>
+
+        <td><label>Nome:</label></td>
+        <td>{{ mapa.nome }}</td>
+
+    </tr>
+
+    <tr>
+
+        <td><label>Descrição:</label></td>
+        <td>{{ mapa.descricao }}</td>
+
+    </tr>
+
+    <tr>
+
+        <td><label>Sistema Origem:</label></td>
+        <td>{{ mapa.sistema_origem }}</td>
+
+    </tr>
+
+    <tr>
+
+        <td><label>Sistema Destino:</label></td>
+        <td>{{ mapa.sistema_destino }}</td>
+
+    </tr>
+
+</table>
+  
+<p><button class="btn btn-primary" type="button" onclick="window.history.back();">Voltar</button>
+
+{% endblock conteudo %}

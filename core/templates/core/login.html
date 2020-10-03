@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block conteudo %}
+
+{% block subtitulo %}<h3 align="center">Acesso</h3>{% endblock %}
+<p></p>
+        <!-- mensagens de erro -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}   
+{% if form.errors %}
+<ul class="messages"></ul>
+    <li>Nome de usuário ou senha inválido. Tente novamente.</li>
+</ul>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Sua conta não tem acesso para esta página. Para continuar,
+    faça login com uma conta que tenha acesso.</p>
+    {% else %}
+    <p>Faça o login para ver esta página.</p>
+    {% endif %}
+{% endif %}
+<div class="container">
+<form method="post" action="{% url 'core:login' %}">
+{% csrf_token %}
+<div class="row justify-content-center" style="background-color: cornflowerblue;">
+
+    <div class="col-auto">
+        <table class="table table-responsive table-bordered rounded" style="margin-top: 3em;">
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+        </table>
+        
+        <p><button class="btn btn-primary" type="submit">Acessar</button>
+    </div>
+</div>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+
+{% block extrahead %}
+    {{ block.super }}
+{% endblock %}
+
+{% block title %}Apontamento{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="#">Novo Apontamento</a></li>
+{% endblock %}
+
+
+{% block conteudo %}
+
+        <!-- mensagens de erro -->
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}   
+    {% if form.errors %}
+    <ul class="messages"></ul>
+        <li>Senha e Confirmação de Senha não são iguais. Tente novamente.</li>
+    </ul>
+    {% endif %}
+    
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Sua conta não tem acesso para esta página. Para continuar,
+        faça login com uma conta que tenha acesso.</p>
+        {% else %}
+        <p>Faça o login para ver esta página.</p>
+        {% endif %}
+    {% endif %}
+
+
+<form method="POST">
+
+{% csrf_token %}
+    <div class="table table-striped">
+        <table>
+        <div class="col-auto">
+
+            {{ form.as_table }}
+        </div>
+    </table>
+    </div>
+    <p><button class="btn btn-primary" type="submit">Salvar</button>
+        <button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
+</form>
+
+{% endblock %}
+
+{% block scriptfooter %}
+{{ block.super }}
+{% endblock %}

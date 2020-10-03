@@ -1,0 +1,70 @@
+{% extends 'base.html' %} 
+{% block title %}Mapa de Carga{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="{% url 'core:inserir' %}">Insere Mapa</a></li>
+{% endblock %}
+
+{% block conteudo %}
+<form method="POST">
+    {% csrf_token %} 
+    <div class="container" style="padding-top: 10px; display: block;">
+    <section class='d-inline-flex justify-content-between p-3' style="background-color: bisque;">
+
+    <table>
+        {{ form.as_table }} 
+    </table>
+
+    
+    </section>
+
+       
+        {{ form_campos.management_form }} 
+        
+        {% for campo in form_campos %} 
+            <div class="d-flex flex-row mb-2" style="background-color:aquamarine;">
+            <section class="flex-fill p-3" style="background-color:chocolate;min-width:40%;">
+                <div>
+
+                    <div style="display: flex; flex-direction: column">
+
+                        {{ campo.tabela_o.label_tag }} {{ campo.tabela_o }}
+                        {{ campo.campo_o.label_tag }} {{ campo.campo_o }}
+                        {{ campo.campo_o_tipo.label_tag }} {{ campo.campo_o_tipo }}
+                        {{ campo.campo_o_tam.label_tag }} {{ campo.campo_o_tam }}
+                        {{ campo.campo_o_dec.label_tag }} {{ campo.campo_o_dec }}
+                        {{ campo.campo_o_validos.label_tag }} {{ campo.campo_o_validos }}
+                        {{ campo.campo_o_formato.label_tag }} {{ campo.campo_o_formato }}
+
+                    </div>
+
+
+                </div>
+            </section>
+            <section class="flex-fill p-3" style="background-color:yellow;min-width:40%;">
+                <div>
+                    <div style="display: flex; flex-direction: column">
+                        {{ campo.tabela_d.label_tag }} {{ campo.tabela_d }}
+                        {{ campo.campo_d.label_tag }} {{ campo.campo_d }}
+                        {{ campo.campo_d_tipo.label_tag }} {{ campo.campo_d_tipo }}
+                        {{ campo.campo_d_tam.label_tag }} {{ campo.campo_d_tam }}
+                        {{ campo.campo_d_dec.label_tag }} {{ campo.campo_d_dec }}
+                        {{ campo.campo_d_validos.label_tag }} {{ campo.campo_d_validos }}
+                        {{ campo.campo_d_formato.label_tag }} {{ campo.campo_d_formato }}
+                    </div>
+                </div>
+            </section>
+            </div>
+    
+        {% endfor %}
+   
+
+    <button class="btn btn-primary" type="submit">Salvar</button>
+    <a class="btn btn-danger" href="#">Cancelar</a>
+</div>
+</form>
+
+
+{% endblock %}

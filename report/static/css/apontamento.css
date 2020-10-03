@@ -1,0 +1,64 @@
+body {
+  background-color: white;
+}
+
+table, th, td {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  width: 100%;
+  border: 1px solid black;
+  border-style: solid;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th {
+  text-align: center;
+  background-color: bisque;
+  height: 30px;
+  padding: 5px;
+}
+
+.titulo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 41px;
+  text-align: center;
+  padding: 5px;
+}
+
+.subtitulo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  text-align: center;
+}
+
+.titulo-th {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 5px;
+}
+
+.titulo-td {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 5px;
+}
+
+.col1, .col2, .col3, .col5 {
+  width: 10%;
+  text-align: center;
+  padding: 5px;
+}
+
+.col4 {
+  width: 34%;
+  padding: 5px;
+}
+
+.total {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  font-weight: bold;
+  text-align: right;
+  margin-right: 5px;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+
+<head>
+    <title>Mapa de Carga</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1 class="titulo-mapa">Mapa de Carga</h1>
+    <h3 class="data-mapa">{{ date }}</h3>
+    <table class="table header-mapa">
+        <thead>
+            <th class="item-th">Mapa</th>
+            <th class="item-th">Descrição</th>
+            <th class="item-th-o">Sistema Origem</th>
+            <th class="item-th-d">Siatema Destino</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="item-campo-hdr">
+                    {{ mapa.nome }}
+                </td>
+                <td class="item-campo-hdr">
+                    {{ mapa.descricao }}
+                </td>
+                <td class="item-campo-hdr">
+                    {{ mapa.sistema_origem }}
+                </td>
+                <td class="item-campo-hdr">
+                    {{ mapa.sistema_destino }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p></p>
+
+    {% for campo in campos %}
+
+        <div class="table tabela-campos">
+            <div class="tabela-grupo-th">
+                <div class="tabela-campos-th">Tabela Origem</div>
+                <div class="tabela-campos-th">Campo Origem</div>
+                <div class="tabela-campos-th">Tipo</div>
+                <div class="tabela-campos-th">Tamanho</div>
+                <div class="tabela-campos-th">Dec</div>
+
+                <div class="tabela-campos-thd">Tabela Destino</div>
+                <div class="tabela-campos-thd">Campo Destino</div>
+                <div class="tabela-campos-thd">Tipo</div>
+                <div class="tabela-campos-thd">Tamanho</div>
+                <div class="tabela-campos-thd">Dec</div>
+            </div>
+            <div class="tabela-grupo-td">
+                <div class="tabela-campos-td">{{ campo.tabela_o }}</div>
+                <div class="tabela-campos-td">{{ campo.campo_o }}</div>
+                <div class="tabela-campos-td">{{ campo.get_campo_o_tipo_display }}</div>
+                <div class="tabela-campos-td">{{ campo.campo_o_tam }}</div>
+                <div class="tabela-campos-td">{{ campo.campo_o_dec }}</div>
+
+                <div class="tabela-campos-td">{{ campo.tabela_d }}</div>
+                <div class="tabela-campos-td">{{ campo.campo_d }}</div>
+                <div class="tabela-campos-td">{{ campo.get_campo_d_tipo_display }}</div>
+                <div class="tabela-campos-td">{{ campo.campo_d_tam }}</div>
+                <div class="tabela-campos-td">{{ campo.campo_d_dec }}</div>
+            </div>
+        </div>
+
+        <div class="table tabela-campos-texto">
+
+            <div class="tabela-grupo-txt-th">
+                <div class="tabela-campos-txt-th">Valores Válidos</div>
+                <div class="tabela-campos-txt-th">Formato</div>
+                <div class="tabela-campos-txt-th">Regra de Conversão</div>
+                <div class="tabela-campos-txt-thd">Valores Válidos</div>
+                <div class="tabela-campos-txt-thd">Formato</div>
+            </div>
+
+            <div class="tabela-grupo-txt-td">
+                <div class="tabela-campos-txt-td">{{ campo.campo_o_validos }}</div>
+                <div class="tabela-campos-txt-td">{{ campo.campo_o_formato }}</div>
+                <div class="tabela-campos-txt-td">{{ campo.regra_conversao}}</div>
+                <div class="tabela-campos-txt-td">{{ campo.campo_d_validos }}</div>
+                <div class="tabela-campos-txt-td">{{ campo.campo_d_formato }}</div>
+
+            </div>
+
+        </div>
+        <p></p>
+    {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %} 
+{% block title %}Apontamento{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="{% url 'core:lista-apontamento' %}">Apontamento</a></li>
+{% endblock %}
+
+
+{% block conteudo %}
+
+<table border='1px solid blue' style="width: 100%;">
+<thead style='background-color:bisque;'>
+<tr>
+    <th>Período</th>
+    <th>Projeto</th>
+    <th>Recurso</th>
+    <th>Data</th>
+    <th>Hora Inicial</th>
+    <th>Hora Final</th>
+    <th>Atividade</th>
+    <th>Ações</th>
+</tr>
+
+</thead>
+
+<tbody>
+    {% for apontamento in object_list %}
+    <tr>
+        <td>{{ apontamento.periodo }}</td>
+        <td>{{ apontamento.projeto }}</td>
+        <td>{{ apontamento.recurso }}</td>
+        <td>{{ apontamento.data_apontamento | date:'d/m/Y' }}</td>
+        <td>{{ apontamento.hora_inicial }}</td>        
+        <td>{{ apontamento.hora_final }}</td>        
+        <td>{{ apontamento.descricao }}</td>        
+        <td><div>
+            <a href="{% url 'core:edit-apontamento' apontamento.id %}"><i class="fas fa-edit"></i>&ensp;</a>
+            <a href="{% url 'core:del-apontamento' apontamento.id %}"><i class="fas fa-trash-alt"></i>&ensp;</a>
+            <a href="{% url 'report:imprime-apontamento' apontamento.id %}"  target="_blank" rel="noopener"><i class="fas fa-print"></i></a>
+        </div></td>
+    </tr>
+    {% endfor %}
+
+</tbody>
+
+</table>
+<a href="{% url 'core:add-apontamento' %}">Novo registro</a>
+<p><button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
+
+{% endblock %}
