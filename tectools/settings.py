@@ -49,6 +49,7 @@ BOOTSTRAP4 = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -135,7 +136,7 @@ PDF_ROOT = os.path.join(BASE_DIR,'media/pdf')
 
 CSS_REPORT_ROOT = os.path.join(BASE_DIR,'report/static/css')
 
-STATIC_ROOT = os.path.join(BASE_DIR, "public")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'media'),
@@ -166,4 +167,11 @@ FONTAWESOME_5_ICON_CLASS = 'default' or 'semantic_ui'
     default: 'default'
 FONTAWESOME_5_PREFIX = 'custom_prefix'
     default: 'fa'
+"""
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+"""This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend. 
+   If you want to apply compression but don’t want the caching behaviour then you can use:
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 """
