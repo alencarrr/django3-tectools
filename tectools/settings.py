@@ -25,7 +25,7 @@ SECRET_KEY = '@aav9ai4j44^!6o(zoz^-j9ha=ihcc!gow2ps6pxxxa626sm#j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['django3-tectools.herokuapp.com']
+ALLOWED_HOSTS = ['django3-tectools.herokuapp.com','mxlsa64']
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'fontawesome_5',
     'bootstrap_datepicker_plus',
     'report',
     'core',
@@ -153,3 +154,14 @@ MSG_TAGS = {
     messages.DEBUG:'text-default',
     messages.WARNING:'text-warning',
 }
+
+"""
+FONTAWESOME_5_CSS = URL or None
+    default: 'fontawesome_5/css/django-fontawesome.css'
+FONTAWESOME_5_CSS_ADMIN = URL or path
+    default: None
+FONTAWESOME_5_ICON_CLASS = 'default' or 'semantic_ui' 
+    default: 'default'
+FONTAWESOME_5_PREFIX = 'custom_prefix'
+    default: 'fa'
+"""
