@@ -13,7 +13,7 @@ from django.template.loader import get_template
 
 def imprimeMapa(request,pk):    
     mapa = models.Mapa.objects.get(pk=pk)
-    campos = models.MapaCampos.objects.all().filter(mapa=pk)
+    campos = models.MapaCamwkhtmltopdf-packpos.objects.all().filter(mapa=pk)
 
     date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
