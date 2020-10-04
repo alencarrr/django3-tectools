@@ -19,7 +19,7 @@ def home(request):
 
     user = User.objects.get(username=request.user.username)
 
-    print('username = {} is_superuser = {}'.format(user.username,user.is_superuser))
+    
 
     if not user.is_superuser:
         # Só executa se o usuario logado não for administrador do django.

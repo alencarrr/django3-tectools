@@ -25,7 +25,7 @@ SECRET_KEY = '@aav9ai4j44^!6o(zoz^-j9ha=ihcc!gow2ps6pxxxa626sm#j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['django3-tectools.herokuapp.com','mxlsa64']
+ALLOWED_HOSTS = ['django3-tectools.herokuapp.com','localhost']
 
 # Application definition
 
@@ -155,8 +155,10 @@ MSG_TAGS = {
     messages.WARNING:'text-warning',
 }
 
+FONTAWESOME_5_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'
+
 """
-FONTAWESOME_5_CSS = URL or None
+FONTAWESOME_5_CSS_ADMIN = None
     default: 'fontawesome_5/css/django-fontawesome.css'
 FONTAWESOME_5_CSS_ADMIN = URL or path
     default: None

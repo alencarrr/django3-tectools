@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../../../report/static/scss/mapacarga.scss"
-    ],
-    "names": [],
-    "file": "mapacarga.css"
-}
