@@ -2,18 +2,20 @@
 import tempfile
 from datetime import datetime
 
-import pdfkit
 from core import models
 from django.conf import settings
 from django.http import FileResponse, HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
+import pdfkit
 
-# para colocar senha no pdfo qyyeo que de
+
+# para colocar senha no pdfo qyyeo que de 
 # enc=pdfencrypt.StandardEncryption("dragao00",canPrint=0)
 
 def imprimeMapa(request,pk):    
+    print('chagou methodo imprimeMapa em {}'.format(settings.PDF_ROOT+settings.OS_SEPARATOR+"mapacarga.pdf"))
     mapa = models.Mapa.objects.get(pk=pk)
-    campos = models.MapaCamwkhtmltopdf-packpos.objects.all().filter(mapa=pk)
+    campos = models.Mapa.objects.all().filter(id=pk)
 
     date = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
@@ -25,7 +27,7 @@ def imprimeMapa(request,pk):
 
     # rederiza o template com os dados referenciados no contexto
     html_string = template.render(contexto)
-
+   
     #a = open(settings.PDF_ROOT+"/mapacarga.html",'w')
     #a.write(html_string)
     #a.close()
@@ -39,7 +41,7 @@ def imprimeMapa(request,pk):
 
     # prepara a resposta HTTP
     try:
-        css_file = settings.CSS_REPORT_ROOT+'/mapacarga.css'
+        css_file = settings.CSS_REPORT_ROOT+settings.OS_SEPARATOR+'mapacarga.css'
         # folha: A4 dpi: 72 width: 595 height: 842
         # folha: A4 dpi: 300 width: 2480 height: 3508
         opcoes = {
@@ -54,15 +56,9 @@ def imprimeMapa(request,pk):
           'footer-center':'[page] de [topage]',
         
         }
-        pdfkit.from_string(html_string,settings.PDF_ROOT+"/mapacarga.pdf", options=opcoes, css=css_file)
-        #buffer.seek(io.SEEK_SET)
-        #resposta = HttpResponse(buffer.getvalue(),content_type='application/pdf')
-        # print(buffer.getvalue())
-        #resposta['Content-Disposition'] = 'inline; filename=mapacarga.pdf'
-        #resposta['Content-Transfer-Enconding']='binary'
-        #buffer.seek(io.SEEK_SET)
-          # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-        return FileResponse(open(settings.PDF_ROOT+"/mapacarga.pdf","rb"), as_attachment=False, filename="mapacarga.pdf")
+        pdfkit.from_string(html_string,settings.PDF_ROOT+settings.OS_SEPARATOR+"mapacarga.pdf", options=opcoes, css=css_file)
+
+        return FileResponse(open(settings.PDF_ROOT+settings.OS_SEPARATOR+"mapacarga.pdf","rb"), as_attachment=False, filename="mapacarga.pdf")
         # return resposta
     except Exception as e:
         print('Error: {}'.format(e))

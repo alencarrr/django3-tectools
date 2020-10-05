@@ -13,6 +13,7 @@ import os
 import subprocess
 from pathlib import Path
 from django.contrib import messages 
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '@aav9ai4j44^!6o(zoz^-j9ha=ihcc!gow2ps6pxxxa626sm#j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['django3-tectools.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['django3-tectools.herokuapp.com','localhost','LAPTOP-7KDAHV3M.PITSolution.local']
 
 # Application definition
 
@@ -133,9 +134,11 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
-PDF_ROOT = os.path.join(BASE_DIR,'media/pdf')
+OS_SEPARATOR = os.sep
 
-CSS_REPORT_ROOT = os.path.join(BASE_DIR,'report/static/css')
+PDF_ROOT = os.path.join(BASE_DIR,'media'+os.sep+'pdf')
+
+CSS_REPORT_ROOT = os.path.join(BASE_DIR,'report'+os.sep+'static'+os.sep+'css')
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = (
@@ -170,12 +173,15 @@ FONTAWESOME_5_PREFIX = 'custom_prefix'
     default: 'fa'
 """
 
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 """This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend. 
    If you want to apply compression but don’t want the caching behaviour then you can use:
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 """
+"""
+
 
 if 'wkhtmltopdf-pack' in os.environ:
     print ('loading wkhtmltopdf path on heroku')
@@ -189,3 +195,5 @@ else:
 WKHTMLTOPDF_CMD_OPTIONS = {
     'quiet': True,
 }    
+"""
+django_heroku.settings(locals())
