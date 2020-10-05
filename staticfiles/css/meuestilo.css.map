@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,GAAG,EAAE,EAAE,EAAE,CAAC;EACX,OAAO,EAAE,GAAG;CACf",
+    "sources": [
+        "../scss/meuestilo.scss"
+    ],
+    "names": [],
+    "file": "meuestilo.css"
+}
