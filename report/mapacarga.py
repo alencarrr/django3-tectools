@@ -56,7 +56,13 @@ def imprimeMapa(request,pk):
           'footer-center':'[page] de [topage]',
         
         }
-        pdfkit.from_string(html_string,settings.PDF_ROOT+settings.OS_SEPARATOR+"mapacarga.pdf", options=opcoes, css=css_file)
+
+        config = pdfkit.configuration(wkhtmltopdf=settings.WKHTMLTOPDF_CMD)
+
+        pdfkit.from_string(html_string,settings.PDF_ROOT+settings.OS_SEPARATOR+"mapacarga.pdf", 
+        options=opcoes, 
+        css=css_file,
+        configuration=config)
 
         return FileResponse(open(settings.PDF_ROOT+settings.OS_SEPARATOR+"mapacarga.pdf","rb"), as_attachment=False, filename="mapacarga.pdf")
         # return resposta
