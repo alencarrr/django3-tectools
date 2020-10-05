@@ -1,7 +1,23 @@
 Para instalar o wkhtmltopdf no ambiente do projeto no HEROKU
 
-heroku create django3-tectools --buildpack https://github.com/dscout/wkhtmltopdf-buildpack.git 
+heroku stack:set heroku-18
 
-heroku buildpacks:set https://github.com/dscout/wkhtmltopdf-buildpack.git -a django3-tectools
+heroku buildpacks:add --index 1 https://github.com/notvad/wkhtmltopdf-buildpack
+heroku buildpacks:add --index 2 heroku/python
 
-heroku buildpacks:add --index 1 https://github.com/dscout/wkhtmltopdf-buildpack.git
+configurar a variavel de ambiente do wkhtmltopdf:
+    heroku config:set WKHTMLTOPDF_VERSION="0.12.6" 
+
+Incluir na raiz do projeto a pasta \Aptfile  
+Incluir o arquivo na raiz do projeto chamado .buildpacks com o seguinte conteúdo:
+    'https://github.com/notvad/wkhtmltopdf-buildpack' 
+    'heroku/python' 
+
+Incluir o arquivo na raiz do projeto chamado Procfile (sem extensão), com o conteúdo:
+    web: gunicorn tectools.wsgi
+
+Tem que instalar o pacote gunicorn no projeto django.
+    pip install gunicorn
+
+Incluir o arquivo requiriments.txt na raiz do projeto com os pacotes usados no projeto django:
+    pip freeze > requiriments.txt
