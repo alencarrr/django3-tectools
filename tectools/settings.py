@@ -186,10 +186,12 @@ if 'DYNO' in os.environ:
 
 
     WKHTMLTOPDF_CMD = subprocess.Popen(
-        ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
-        stdout=subprocess.PIPE).communicate()[0].strip()    
-        PRINT('ENVIRONMENT DYNO: {}'.FORMAT(WKHTMLTOPDF_CMD))
-        WKHTMLTOPDF_CMD = "bin/wkhtmltopdf"
+    ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
+    stdout=subprocess.PIPE).communicate()[0].strip()    
+
+    print('ENVIRONMENT DYNO: {}'.FORMAT(WKHTMLTOPDF_CMD))
+    
+    WKHTMLTOPDF_CMD = "bin/wkhtmltopdf"
 
 else:
     print ('loading wkhtmltopdf path on localhost')
