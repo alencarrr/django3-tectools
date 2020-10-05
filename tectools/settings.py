@@ -180,7 +180,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
    If you want to apply compression but don’t want the caching behaviour then you can use:
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 """
-
+for env in os.environ:
+    print (env)
 
 if 'DYNO' in os.environ:
 
@@ -189,13 +190,13 @@ if 'DYNO' in os.environ:
     ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
     stdout=subprocess.PIPE).communicate()[0].strip()    
 
-    print('ENVIRONMENT DYNO: {}'.FORMAT(WKHTMLTOPDF_CMD))
+    print('ENVIRONMENT DYNO: {}'.format(WKHTMLTOPDF_CMD))
     
     WKHTMLTOPDF_CMD = "bin/wkhtmltopdf"
 
 else:
     print ('loading wkhtmltopdf path on localhost')
-    WKHTMLTOPDF_CMD = "wkhtmltopdf"
+    WKHTMLTOPDF_CMD = "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"
     
 WKHTMLTOPDF_CMD_OPTIONS = {
     'quiet': True,
