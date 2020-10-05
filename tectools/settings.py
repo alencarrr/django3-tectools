@@ -180,20 +180,22 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
    If you want to apply compression but don’t want the caching behaviour then you can use:
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 """
-"""
 
 
 if 'wkhtmltopdf-pack' in os.environ:
     print ('loading wkhtmltopdf path on heroku')
+    WKHTMLTOPDF_CMD = '/bin/wkhtmltopdf'
+    """
     WKHTMLTOPDF_CMD = subprocess.Popen(
         ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
         stdout=subprocess.PIPE).communicate()[0].strip()    
+    """
 else:
     print ('loading wkhtmltopdf path on localhost')
-    WKHTMLTOPDF_CMD = "/usr/local/bin/wkhtmltopdf"
+    WKHTMLTOPDF_CMD = "wkhtmltopdf"
     
 WKHTMLTOPDF_CMD_OPTIONS = {
     'quiet': True,
 }    
-"""
+
 django_heroku.settings(locals())
