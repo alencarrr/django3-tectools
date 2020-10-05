@@ -1,3 +1,5 @@
 Para instalar o wkhtmltopdf no ambiente do projeto no HEROKU
 
+heroku create django3-tectools --buildpack https://github.com/dscout/wkhtmltopdf-buildpack.git 
+
 heroku buildpacks:set https://github.com/dscout/wkhtmltopdf-buildpack.git -a django3-tectools
