@@ -47,6 +47,7 @@ class MapaDelete(LoginRequiredMixin,DeleteView):
 """ Seção de tratamento dos campos do mapa de carga  """
 
 class CampoListView(LoginRequiredMixin,ListView):
+
     model = MapaCampos
 
     template_name = "core/campo_list.html"
@@ -56,11 +57,15 @@ class CampoListView(LoginRequiredMixin,ListView):
     exclude = ('id')
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = super().get_queryset()
 
-        mapa_id = self.kwargs['idmapa']
-        if mapa_id:
-            new_queryset = MapaCampos.objects.filter(mapa_id=mapa_id).order_by('mapa','tabela_o')
+
+        try:
+            new_queryset = MapaCampos.objects.filter(mapa_id=self.kwargs['idmapa']).order_by('mapa','tabela_o')
+            queryset = new_queryset
+        except KeyError:
+            pass
+           
 
         """
         print('parametros para a lista de campos = {}'.format(self.kwargs['idmapa']))
@@ -68,9 +73,6 @@ class CampoListView(LoginRequiredMixin,ListView):
         
         return new_queryset
         """
-        if new_queryset is not None:
-            queryset = new_queryset
-
         return queryset        
 
 
