@@ -67,7 +67,7 @@ def imprime(request,pk):
 
     # prepara a resposta HTTP
     try:
-        css_file = settings.CSS_REPORT_ROOT+'/apontamento.css'
+        css_file = settings.CSS_REPORT_ROOT+settings.OS_SEPARATOR+'apontamento.css'
         # folha: A4 dpi: 72 width: 595 height: 842
         # folha: A4 dpi: 300 width: 2480 height: 3508
         opcoes = {
@@ -82,7 +82,13 @@ def imprime(request,pk):
           'footer-center':'[page] de [topage]',
         
         }
-        pdfkit.from_string(html_string,settings.PDF_ROOT+settings.OS_SEPARATOR+"apontamento.pdf", options=opcoes, css=css_file)
+
+        config = pdfkit.configuration(wkhtmltopdf=settings.WKHTMLTOPDF_CMD)
+
+        pdfkit.from_string(html_string,settings.PDF_ROOT+settings.OS_SEPARATOR+"apontamento.pdf", 
+        options=opcoes, 
+        css=css_file,
+        configuration=config)
         #buffer.seek(io.SEEK_SET)
         #resposta = HttpResponse(buffer.getvalue(),content_type='application/pdf')
         # print(buffer.getvalue())

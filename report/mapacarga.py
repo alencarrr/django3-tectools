@@ -13,7 +13,6 @@ import pdfkit
 # enc=pdfencrypt.StandardEncryption("dragao00",canPrint=0)
 
 def imprimeMapa(request,pk):    
-    print('chagou methodo imprimeMapa em {}'.format(settings.PDF_ROOT+settings.OS_SEPARATOR+"mapacarga.pdf"))
     mapa = models.Mapa.objects.get(pk=pk)
     campos = models.Mapa.objects.all().filter(id=pk)
 
