@@ -59,8 +59,8 @@ class CampoListView(LoginRequiredMixin,ListView):
         queryset = self.queryset
 
         mapa_id = self.kwargs['idmapa']
-
-        new_queryset = MapaCampos.objects.filter(mapa_id=mapa_id).order_by('mapa','tabela_o')
+        if mapa_id:
+            new_queryset = MapaCampos.objects.filter(mapa_id=mapa_id).order_by('mapa','tabela_o')
 
         """
         print('parametros para a lista de campos = {}'.format(self.kwargs['idmapa']))
@@ -70,6 +70,7 @@ class CampoListView(LoginRequiredMixin,ListView):
         """
         if new_queryset is not None:
             queryset = new_queryset
+
         return queryset        
 
 
