@@ -105,14 +105,14 @@ def meulogout(request):
 
     return render(request,'core/login.html', {'form':form})
 
-def handler404(request, exception):
+def handler404(request, *args, **kwargs):
     context = {}
     response = render(request, "core/404.html", context=context)
     response.status_code = 404
     return response
 
 
-def handler500(request):
+def handler500(request, *args, **kwargs):
     context = {}
     response = render(request, "core/500.html", context=context)
     response.status_code = 500

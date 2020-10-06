@@ -24,8 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@aav9ai4j44^!6o(zoz^-j9ha=ihcc!gow2ps6pxxxa626sm#j'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+import socket
+host_name_str = socket.gethostname()
+ahost_debug = ('LAPTOP-7KDAHV3M')
+if host_name_str in ahost_debug:
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['django3-tectools.herokuapp.com','localhost','LAPTOP-7KDAHV3M.PITSolution.local']
 
