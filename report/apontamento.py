@@ -82,7 +82,7 @@ def imprime(request,pk):
           'footer-center':'[page] de [topage]',
         
         }
-        pdfkit.from_string(html_string,settings.PDF_ROOT+"/apontamento.pdf", options=opcoes, css=css_file)
+        pdfkit.from_string(html_string,settings.PDF_ROOT+settings.OS_SEPARATOR+"apontamento.pdf", options=opcoes, css=css_file)
         #buffer.seek(io.SEEK_SET)
         #resposta = HttpResponse(buffer.getvalue(),content_type='application/pdf')
         # print(buffer.getvalue())
@@ -90,7 +90,7 @@ def imprime(request,pk):
         #resposta['Content-Transfer-Enconding']='binary'
         #buffer.seek(io.SEEK_SET)
           # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-        return FileResponse(open(settings.PDF_ROOT+"/apontamento.pdf","rb"), as_attachment=False, filename="apontamento.pdf")
+        return FileResponse(open(settings.PDF_ROOT+settings.OS_SEPARATOR+"apontamento.pdf","rb"), as_attachment=False, filename="apontamento.pdf")
         # return resposta
     except Exception as e:
         print('Error: {}'.format(e))
