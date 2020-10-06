@@ -18,7 +18,7 @@
     <th>Sistema Origem</th>
     <th>Sistema Destino</th>
     <th></th>
-    <th>Ações</th>
+    <th >Ações</th>
 </tr>
 
 </thead>
@@ -30,8 +30,8 @@
         <td>{{ mapa.descricao }}</td>
         <td>{{ mapa.sistema_origem }}</td>
         <td>{{ mapa.sistema_destino }}</td>
-        <td><a href="{% url 'core:lista-campo' mapa.id %}">Mapear Campos</a></td>
-        <td><div>
+        <td><a href="{% url 'core:lista-campos' mapa.id %}">Mapear Campos</a></td>
+        <td><div align="center">
             <a href="{% url 'core:view-mapa' mapa.id %}"><i class="fas fa-eye"></i>&ensp;</a>
             <a href="{% url 'core:edit-mapa' mapa.id %}"><i class="fas fa-edit"></i>&ensp;</a>
             <a href="{% url 'core:del-mapa' mapa.id %}"><i class="fas fa-trash-alt"></i>&ensp;</a>

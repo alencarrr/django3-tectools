@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@aav9ai4j44^!6o(zoz^-j9ha=ihcc!gow2ps6pxxxa626sm#j'
+SECRET_KEY = '@$2y$12$sdH54eCPKFDqIdhrP4.haOXGaMm8HRTalXwNlQvFZj2ZS0s/rMs42'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -149,6 +149,7 @@ PDF_ROOT = os.path.join(BASE_DIR,'media'+os.sep+'pdf')
 CSS_REPORT_ROOT = os.path.join(BASE_DIR,'report'+os.sep+'static'+os.sep+'css')
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'media'),
