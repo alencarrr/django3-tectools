@@ -56,10 +56,21 @@ class CampoListView(LoginRequiredMixin,ListView):
     exclude = ('id')
 
     def get_queryset(self):
+        queryset = self.queryset
+
+        mapa_id = self.kwargs['idmapa']
+
+        new_queryset = MapaCampos.objects.filter(mapa_id=mapa_id).order_by('mapa','tabela_o')
+
+        """
         print('parametros para a lista de campos = {}'.format(self.kwargs['idmapa']))
         self.mapa = get_object_or_404(Mapa, id=self.kwargs['idmapa'])
-        new_queryset = MapaCampos.objects.filter(mapa=self.mapa).order_by('mapa','tabela_o')
+        
         return new_queryset
+        """
+        if new_queryset is not None:
+            queryset = new_queryset
+        return queryset        
 
 
 
