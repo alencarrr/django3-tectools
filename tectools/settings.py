@@ -33,7 +33,7 @@ ahost_debug = ('LAPTOP-7KDAHV3M')
 if host_name_str in ahost_debug:
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 
 ALLOWED_HOSTS = ['django3-tectools.herokuapp.com','localhost','LAPTOP-7KDAHV3M.PITSolution.local']
 
