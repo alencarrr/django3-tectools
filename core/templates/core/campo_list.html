@@ -5,7 +5,11 @@
 {% block breadcrumbs %} 
 {{ block.super }}
 <li class="breadcrumb-item">
-    <a href="{% url 'core:lista-campos' campos.0.mapa.id %}">Lista de Campos</a></li>
+    {% if idmapa %}
+        <a href="{% url 'core:lista-campos' idmapa %}">Lista de Campos</a></li>
+    {% else %}
+        <a href="#">Lista de Campos</a></li>
+    {% endif %}
 {% endblock %}
 
 
@@ -39,9 +43,11 @@
         <td>{{ campo.get_campo_d_tipo_display }}</td>
 
         <td><div align="center">
-            <a href="{% url 'core:view-campo' campo.mapa.id campo.id %}"><i class="fas fa-eye"></i>&ensp;</a>
-            <a href="{% url 'core:edit-campo' campo.mapa.id campo.id %}"><i class="fas fa-edit"></i>&ensp;</a>
-            <a href="{% url 'core:del-campo' campo.mapa.id campo.id %}"><i class="fas fa-trash-alt"></i></a>
+            {% if campo.id %}
+                <a href="{% url 'core:view-campo' idmapa campo.id %}"><i class="fas fa-eye"></i>&ensp;</a>
+                <a href="{% url 'core:edit-campo' idmapa campo.id %}"><i class="fas fa-edit"></i>&ensp;</a>
+                <a href="{% url 'core:del-campo' idmapa campo.id %}"><i class="fas fa-trash-alt"></i></a>
+            {% endif %}
         </div></td>
     </tr>
     {% endfor %}
@@ -51,6 +57,8 @@
 
 </table>
 
-<a href="{% url 'core:add-campo' campos.0.mapa.id %}">Novo registro</a>
+{% if idmapa  %}
+   <a href="{% url 'core:add-campo' idmapa  %}">Novo registro</a>
+{% endif %}
 <p><button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
 {% endblock %}

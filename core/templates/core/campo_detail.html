@@ -4,7 +4,7 @@
 {% block breadcrumbs %} 
 {{ block.super }}
 <li class="breadcrumb-item">
-    <a href="{% url 'core:view-campo' campo.mapa campo.id %}">Detalhe do Mapa</a></li>
+    <a href="{% url 'core:view-campo' campo.mapa.id campo.id %}">Detalhe do Mapa</a></li>
 {% endblock %}
 
 

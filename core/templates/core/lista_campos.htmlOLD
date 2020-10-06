@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% block title %}Lista Mapa{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="{% url 'core:lista-mapa' %}">Lista Mapas</a></li>
+{% endblock %}
+{% block conteudo %}
+
+    <table style="min-width: 100%;background-color:bisque;">
+        <tr style="border: 1px; border-style:solid;">
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Sistema Origem</th>
+            <th>Sistema Destino</th>
+            <th>Ações</th>
+        </tr>  
+        {% for mapa in mapas %}
+            <tr>
+                <td>{{ mapa.nome }}</td>
+                <td>{{ mapa.descricao }}</td>
+                <td>{{ mapa.sistema_origem }}</td>
+                <td>{{ mapa.sistema_destino }}</td>
+                <td><button type='button' href="#"><i class="fas fa-plus"></i></button>'
+                <button type='button' href="#"><i class="fas fa-pencil-alt"></i></button>'</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}
