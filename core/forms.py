@@ -12,7 +12,6 @@ class MapaForm(forms.ModelForm):
         fields = '__all__'
         
 class MapaCamposForm(forms.ModelForm):
-    
     class Meta:
         model = models.MapaCampos
         fields = '__all__'

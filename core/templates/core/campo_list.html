@@ -15,47 +15,51 @@
 
 {% block conteudo %}
 
-<table border='1px solid blue' style="width: 100%;">
-<thead style='background-color:bisque;'>
-<tr>
-    <th>Mapa</th>
-    <th>Tabela Origem</th>
-    <th>Campo Origem</th>
-    <th>Tipo Origem</th>
-    <th>Tabela Destino</th>
-    <th>Campo Destino</th>
-    <th>Tipo Destino</th>    
-    <th >Ações</th>
-</tr>
 
-</thead>
+<div class="container-fluid" style="padding: unset;">
 
-<tbody>
-    {% for campo in campos %}
-    <tr>
-        <td>{{ campo.mapa.nome }}</td>
-        <td>{{ campo.tabela_o }}</td>
-        <td>{{ campo.campo_o }}</td>
-        <td>{{ campo.get_campo_o_tipo_display }}</td>
-
-        <td>{{ campo.tabela_d }}</td>
-        <td>{{ campo.campo_d }}</td>
-        <td>{{ campo.get_campo_d_tipo_display }}</td>
-
-        <td><div align="center">
-            {% if campo.id %}
-                <a href="{% url 'core:view-campo' idmapa campo.id %}"><i class="fas fa-eye"></i>&ensp;</a>
-                <a href="{% url 'core:edit-campo' idmapa campo.id %}"><i class="fas fa-edit"></i>&ensp;</a>
-                <a href="{% url 'core:del-campo' idmapa campo.id %}"><i class="fas fa-trash-alt"></i></a>
-            {% endif %}
-        </div></td>
-    </tr>
-    {% endfor %}
-   
-
-</tbody>
-
-</table>
+    <table class="table table-bordered table-striped">
+        <thead style='background-color:bisque;'>
+            <tr>
+                <th>Mapa</th>
+                <th>Tabela Origem</th>
+                <th>Campo Origem</th>
+                <th>Tipo Origem</th>
+                <th>Tabela Destino</th>
+                <th>Campo Destino</th>
+                <th>Tipo Destino</th>    
+                <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for campo in campos %}
+            <tr>
+                <td>{{ campo.mapa.nome }}</td>
+                <td>{{ campo.tabela_o }}</td>
+                <td>{{ campo.campo_o }}</td>
+                <td>{{ campo.get_campo_o_tipo_display }}</td>
+        
+                <td>{{ campo.tabela_d }}</td>
+                <td>{{ campo.campo_d }}</td>
+                <td>{{ campo.get_campo_d_tipo_display }}</td>
+        
+                <td><div align="center">
+                    {% if campo.id %}
+                        <a href="{% url 'core:view-campo' idmapa campo.id %}"><i class="fas fa-eye"></i>&ensp;</a>
+                        <a href="{% url 'core:edit-campo' idmapa campo.id %}"><i class="fas fa-edit"></i>&ensp;</a>
+                        <a href="{% url 'core:del-campo' idmapa campo.id %}"><i class="fas fa-trash-alt"></i></a>
+                    {% endif %}
+                </div></td>
+            </tr>
+            {% endfor %}
+           
+        
+        </tbody>
+    
+    
+    </table>
+    
+    </div>
 
 {% if idmapa  %}
    <a href="{% url 'core:add-campo' idmapa  %}">Novo registro</a>

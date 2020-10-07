@@ -1,4 +1,30 @@
 {% extends 'base.html' %} 
+
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    .corcol1 {
+        background-color: bisque;
+        padding: 10px;
+    }
+
+    .corcol2 {
+        background-color: beige;
+        padding: 10px;
+    }
+
+    .corcol3 {
+        background-color:burlywood;
+        padding: 10px;
+    }
+
+
+</style>
+
+{% endblock %}
+
+
 {% block title %}Mapa de Carga{% endblock %} 
 
 {% block breadcrumbs %} 
@@ -14,16 +40,13 @@
 
     {% csrf_token %}
 
-    {{ form.mapa.label_tag}}&nbsp;{{ form.mapa }}
-    <div class="d-flex flex-row mb-2" style="background-color:aquamarine;">
-        <section class="flex-fill p-3" style="background-color:chocolate;">
-            
-            <h3>ORIGEM</h3>
-            
-            <div>
-    
-                <div style="display: flex; flex-direction: column">
-    
+    <div class="container-fluid">
+        <div class="row"><div class="col">{{ form.mapa.label_tag }} {{ form.mapa }}</div></div>
+        <div class="row justify-content-md-center">
+            <div class="col corcol1">
+                <a class="h5">ORIGEM</a>
+                <div class="d-flex flex-column">
+                    
                     {{ form.tabela_o.label_tag }} {{ form.tabela_o }}
                     {{ form.campo_o.label_tag }} {{ form.campo_o }}
                     {{ form.campo_o_tipo.label_tag }} {{ form.campo_o_tipo }}
@@ -31,24 +54,17 @@
                     {{ form.campo_o_dec.label_tag }} {{ form.campo_o_dec }}
                     {{ form.campo_o_validos.label_tag }} {{ form.campo_o_validos }}
                     {{ form.campo_o_formato.label_tag }} {{ form.campo_o_formato }}
-    
                 </div>
-    
-    
             </div>
-        </section>
-        <section class="flex-fill p-3" style="background-color:azure;">
-            <h3 align="CENTER">REGRA DE CONVERSÃO</h3>
-            <div style="display: flex; flex-direction: column">
-                {{ form.regra_conversao }}
+            <div class="col corcol2">
+                <a class="h5">REGRAS DE CONVERSÃO</a>
+                <div class="d-flex flex-column">
+                    {{ form.regra_conversao }}
+                </div>
             </div>
-        </section>
-        <section class="flex-fill p-3" style="background-color:yellow;">
-            
-            <h3>DESTINO</h3>
-            
-            <div>
-                <div style="display: flex; flex-direction: column">
+            <div class="col corcol3">
+                <a class="h5">DESTINO</a>
+                <div class="d-flex flex-column">
                     {{ form.tabela_d.label_tag }} {{ form.tabela_d }}
                     {{ form.campo_d.label_tag }} {{ form.campo_d }}
                     {{ form.campo_d_tipo.label_tag }} {{ form.campo_d_tipo }}
@@ -58,32 +74,13 @@
                     {{ form.campo_d_formato.label_tag }} {{ form.campo_d_formato }}
                 </div>
             </div>
-        </section>
-    </div>        
-
-
-    <p><button class="btn btn-primary" type="submit">Salvar</button>
-        <button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
-</form>
-<script language="javascript">
-    /*  Para desabilitar o campo ID Mapa */
-    let meuintervalo = setInterval(() => {
-        let mapa_id = document.getElementById("id_mapa");
-        const queryString = window.location.pathname;
-        let urlParms = new URLSearchParams(queryString)
-        let params = queryString.split('/')
-        //console.log('parametro',mapa_id)
-        mapa_id.value = params[4];
-
-    },10);
-
-    setTimeout(()=>{
-
-        clearInterval(meuintervalo);
-
-    },10)
-
+        </div>
     
+        <p><button class="btn btn-primary" type="submit">Salvar</button>
+            <button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
+    
+    </div>
 
-</script>
+</form>
+
 {% endblock conteudo %}
