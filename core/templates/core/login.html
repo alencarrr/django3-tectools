@@ -4,7 +4,7 @@
 
 {% block conteudo %}
 
-{% block subtitulo %}<h3 align="center">Acesso</h3>{% endblock %}
+{% block subtitulo %}<h3 align="center"></h3>{% endblock %}
 <p></p>
         <!-- mensagens de erro -->
 {% if messages %}
@@ -28,34 +28,38 @@
     <p>Faça o login para ver esta página.</p>
     {% endif %}
 {% endif %}
-<div class="container" style="max-height: fit-content;">
+<div class="container">
     <form method="post" action="{% url 'core:login' %}">
     {% csrf_token %}
 
-        <div class="grid" style="background-color: aquamarine; max-width: 50%;margin-left: 25%; max-height: fit-content;text-align: center;">
 
-            <div class="col-sm-12">
-
-                <div class="row" style="-webkit-user-modify: read-write-plaintext-only;padding-top: 30px;-webkit-text-stroke-width: medium;">
-
-                    <div class="col-12 col-sm-12" style="display: inline-grid;">
-                        {{ form.username.label_tag }}{{ form.username }}
-                    </div>
-                    <div class="col-12 col-sm-12" style="display: inline-grid;">
-                        {{ form.password.label_tag }}{{ form.password }} 
-                    </div>
-
-                    <div class="p-2 bd-highlight">
-                        <p></p><button class="btn btn-primary" type="submit">Acessar</button>
-                    </div>
-
-                </div>
-
-            </div>
-
+    <div class="card bg-info text-white">
+        <div class="card-header">Chave de Acesso</div>
+        <div class="card-body">
+            <table style="text-align: center;margin: auto;">
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                </tr>
+                <tr>
+                    <td style="display: block;">
+                        {{ form.username }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                </tr>
+                <tr>
+                    <td style="display: block;">
+                        {{ form.password }} 
+                    </td>
+                </tr>
+            </table>
         </div>
-
+        <div class="card-footer">
+            <p></p><button class="btn btn-primary" type="submit">Acessar</button>
+        </div>
     </div>
+
 
     </form>
 </div>
