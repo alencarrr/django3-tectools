@@ -47,15 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
-    'fontawesome_5',
     'bootstrap_datepicker_plus',
+    'fontawesome_5',
     'report',
     'core',
 ]
-
-BOOTSTRAP4 = {
-    'include_jquery': True,
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -102,7 +98,7 @@ if host_name_str in ahost_debug:
     }
 else:
     pass
-
+# Acessando uma base POSTGRESQL remota.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -155,6 +151,13 @@ USE_TZ = False # Default: True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 OS_SEPARATOR = os.sep
@@ -163,10 +166,18 @@ PDF_ROOT = os.path.join(BASE_DIR,'media'+os.sep+'pdf')
 
 CSS_REPORT_ROOT = os.path.join(BASE_DIR,'report'+os.sep+'static'+os.sep+'css')
 
+# python manage.py collectstatic joga todos os arquivos estaticos na STATIC_ROOT
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
+# WhiteNoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+"""This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend. 
+   If you want to apply compression but don’t want the caching behaviour then you can use:
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+"""
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'media'),
 )
 
@@ -197,13 +208,6 @@ FONTAWESOME_5_PREFIX = 'custom_prefix'
     default: 'fa'
 """
 
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-"""This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend. 
-   If you want to apply compression but don’t want the caching behaviour then you can use:
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-"""
 
 if 'DYNO' in os.environ:
     

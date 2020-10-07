@@ -52,24 +52,23 @@ def trocasenha(request):
         elif senha1 != senha2:
             messages.add_message(request,messages.ERROR,"As senhas são diferentes!. Tente novamente.", extra_tags=settings.MSG_TAGS[messages.ERROR])
             return redirect('/novasenha/')
-        elif True:
-
-                try:
-                    validate_password(senha1,user=request.user)
-                except ValidationError as errorlist:
-                    for erro in errorlist:
-                        messages.add_message(request,messages.ERROR,erro, extra_tags=settings.MSG_TAGS[messages.ERROR])
-                    return redirect('/novasenha/')   
         else:
-            user = User.objects.get(id=request.user.id)
-            user.set_password(senha1)
-            user.save()
-            recurso = Recurso.objects.get(user_id=user.id)
-            recurso.trocar_senha = False
-            recurso.save()
-            messages.add_message(request,messages.SUCCESS,"Senha alterada com sucesso!. Acesse novamente.", extra_tags=settings.MSG_TAGS[messages.SUCCESS])
+            try:
+                validate_password(senha1,user=request.user)
+            except ValidationError as errorlist:
+                for erro in errorlist:
+                    messages.add_message(request,messages.ERROR,erro, extra_tags=settings.MSG_TAGS[messages.ERROR])
+                return redirect('/novasenha/')   
 
-            return redirect('/logout/')
+        user = User.objects.get(id=request.user.id)
+        user.set_password(senha1)
+        user.save()
+        recurso = Recurso.objects.get(user_id=user.id)
+        recurso.trocar_senha = False
+        recurso.save()
+        messages.add_message(request,messages.SUCCESS,"Senha alterada com sucesso!. Acesse novamente.", extra_tags=settings.MSG_TAGS[messages.SUCCESS])
+
+        return redirect('/logout/')
 
     return render(request,'core/trocar_senha.html')
 
