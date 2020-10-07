@@ -4,7 +4,7 @@
 
 {% block conteudo %}
 
-{% block subtitulo %}<h3 align="center">Mudar a Senha</h3>{% endblock %}
+{% block subtitulo %}<h3 align="center"></h3>{% endblock %}
 <p></p>
         <!-- mensagens de erro -->
 {% if messages %}
@@ -28,31 +28,66 @@
     <p>Faça o login para ver esta página.</p>
     {% endif %}
 {% endif %}
-<div class="container">
+
 <form method="post" action="{% url 'core:trocasenha' %}">
 {% csrf_token %}
-<div class="row justify-content-center" style="background-color: cornflowerblue;">
 
-    <div class="col-auto">
-        <table class="table table-responsive table-bordered rounded" style="margin-top: 3em;">
-        <tr>
-            <div class="form-group">
-                <label for="InputPassword1">Senha</label>
-                <input type="password" class="form-control" id="InputPassword1" name="InputPassword1" >
+
+<div class="container">
+
+    <div class="d-flex justify-content-center">
+
+        <div class="card bg-info text-white" style="max-width: fit-content; align-items: center;">
+
+            <div class="card-header">Mudar Senha</div>
+
+                <div class="card-body">
+
+                    <div class="row d-flex">
+
+                        
+                        <div class="col-sm-12 d-flex">
+                            
+                            <label for="InputPassword1">Senha</label>
+                            
+                            
+                        </div>
+                        
+                        <div class="col-sm-12 d-flex">
+                            
+                            <input type="password" class="form-control" id="InputPassword1" name="InputPassword1" >
+                            
+                        </div>
+
+                    </div>            
+
+                    <div class="row d-flex">
+
+                        <div class="col-sm-12 d-flex">
+
+                            <label for="InputPassword2">Confirmar Senha</label>
+
+                        </div>
+
+                        <div class="col-sm-12 d-flex">
+
+                            <input type="password" class="form-control" id="InputPassword2" name="InputPassword2">
+
+                        </div>
+
+                    </div>            
+                </div>
+
+            <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Salvar</button>
             </div>
-        </tr>
-        <tr>
-            <div class="form-group">
-                <label for="InputPassword2">Confirmar Senha</label>
-                <input type="password" class="form-control" id="InputPassword2" name="InputPassword2">
-            </div>
-        </tr>
-        </table>
-        
-        <p><button class="btn btn-primary" type="submit">Salvar</button>
+
+        </div>
     </div>
 </div>
+
+
 </form>
-</div>
+
 
 {% endblock %}

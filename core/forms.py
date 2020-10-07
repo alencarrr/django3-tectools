@@ -18,13 +18,12 @@ class MapaCamposForm(forms.ModelForm):
         fields = '__all__'
 
 class LoginForm(forms.ModelForm):
-    #password = forms.CharField(widget=forms.PasswordInput,label='Senha')
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), label='Usuário')
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), label='Senha')
     class Meta:
         model = User
         fields = ['username','password']
-        widgets = {
-            'password':forms.PasswordInput,
-        }
+
 
 
 class ApontamentoForm(forms.ModelForm):

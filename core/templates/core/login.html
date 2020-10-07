@@ -43,49 +43,51 @@
 
 <div class="container">
 
-    <div class="card bg-info text-white">
+    <div class="d-flex justify-content-center">
 
-        <div class="card-header">Chave de Acesso</div>
+        <div class="card bg-info text-white" style="max-width: fit-content; align-items: center;">
 
-            <div class="card-body">
+            <div class="card-header">Chave de Acesso</div>
 
-                <div class="row d-flex">
+                <div class="card-body">
 
-                    <div class="col-sm-12 d-flex">
+                    <div class="row d-flex">
 
-                        {{ form.username.label_tag }}
+                        <div class="col-sm-12 d-flex">
 
-                    </div>
+                            {{ form.username.label_tag }}
 
-                    <div class="col-sm-12 d-flex">
-                        {{ form.username }}
-                    </div>
+                        </div>
 
-                </div>            
+                        <div class="col-sm-12 d-flex">
+                            {{ form.username }}
+                        </div>
 
-                <div class="row d-flex">
+                    </div>            
 
-                    <div class="col-sm-12 d-flex">
+                    <div class="row d-flex">
 
-                        {{ form.password.label_tag }}
+                        <div class="col-sm-12 d-flex">
 
-                    </div>
+                            {{ form.password.label_tag }}
 
-                    <div class="col-sm-12 d-flex">
+                        </div>
 
-                        {{ form.password }} 
+                        <div class="col-sm-12 d-flex">
 
-                    </div>
+                            {{ form.password }} 
 
-                </div>            
+                        </div>
+
+                    </div>            
+                </div>
+
+            <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Acessar</button>
             </div>
 
-        <div class="card-footer">
-            <button class="btn btn-primary" type="submit">Acessar</button>
         </div>
-
     </div>
-
 </div>
 </form>
 
