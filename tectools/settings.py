@@ -33,7 +33,7 @@ ahost_debug = ('LAPTOP-7KDAHV3M')
 if host_name_str in ahost_debug:
     DEBUG = True
 else:
-    DEBUG = True
+    DEBUG = False
 
 ALLOWED_HOSTS = ['django3-tectools.herokuapp.com','localhost','LAPTOP-7KDAHV3M.PITSolution.local']
 
@@ -93,12 +93,27 @@ WSGI_APPLICATION = 'tectools.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+if host_name_str in ahost_debug:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'tectoolsdb.sqlite3'),
+        }
+    }
+else:
+    pass
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'tectoolsdb.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dforf24ocahi07',
+        'USER': 'ijyvdmbwfesnoi',
+        'PASSWORD': '6f282537d935ff3dd661edb499d5170a08e3e7952d5f895762ba935f42086bb5',
+        'HOST': 'ec2-52-21-0-111.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation

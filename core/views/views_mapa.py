@@ -105,6 +105,13 @@ class CampoCreate(LoginRequiredMixin,CreateView):
         self.initial = {'mapa':mapa.id}
         return self.initial
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context.
+        context = super(CampoCreate, self).get_context_data(**kwargs)
+        # Add the current category to the context.
+        context['idmapa'] = self.kwargs['idmapa']
+        return context 
+
     def get_success_url(self):
         return reverse_lazy('core:lista-campos', kwargs={'idmapa': self.kwargs['idmapa']})  
 
