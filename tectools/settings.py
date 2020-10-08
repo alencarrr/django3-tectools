@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -220,5 +221,12 @@ else:
 WKHTMLTOPDF_CMD_OPTIONS = {
     'quiet': True,
 }    
+
+# https://pypi.org/project/django-session-timeout/
+# SESSION_EXPIRE_SECONDS = 900  # 15 minutos
+SESSION_EXPIRE_SECONDS = 900  # 15 minutos
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 # group by minute
+SESSION_TIMEOUT_REDIRECT = '/logout/'
 
 django_heroku.settings(locals())
