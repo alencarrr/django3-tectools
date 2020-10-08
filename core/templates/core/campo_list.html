@@ -12,57 +12,53 @@
     {% endif %}
 {% endblock %}
 
-
 {% block conteudo %}
 
+<div class="container-fluid">
 
-<div class="container-fluid" style="padding: unset;">
-
-    <table class="table table-bordered table-striped">
-        <thead style='background-color:bisque;'>
-            <tr>
-                <th>Mapa</th>
-                <th>Tabela Origem</th>
-                <th>Campo Origem</th>
-                <th>Tipo Origem</th>
-                <th>Tabela Destino</th>
-                <th>Campo Destino</th>
-                <th>Tipo Destino</th>    
-                <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for campo in campos %}
-            <tr>
-                <td>{{ campo.mapa.nome }}</td>
-                <td>{{ campo.tabela_o }}</td>
-                <td>{{ campo.campo_o }}</td>
-                <td>{{ campo.get_campo_o_tipo_display }}</td>
-        
-                <td>{{ campo.tabela_d }}</td>
-                <td>{{ campo.campo_d }}</td>
-                <td>{{ campo.get_campo_d_tipo_display }}</td>
-        
-                <td><div align="center">
-                    {% if campo.id %}
-                        <a href="{% url 'core:view-campo' idmapa campo.id %}"><i class="fas fa-eye"></i>&ensp;</a>
-                        <a href="{% url 'core:edit-campo' idmapa campo.id %}"><i class="fas fa-edit"></i>&ensp;</a>
-                        <a href="{% url 'core:del-campo' idmapa campo.id %}"><i class="fas fa-trash-alt"></i></a>
-                    {% endif %}
-                </div></td>
-            </tr>
-            {% endfor %}
-           
-        
-        </tbody>
-    
-    
-    </table>
-    
+    <div class="row row-cols-8">
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Mapa</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Tabela Origem</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Campo Origem</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Tipo Origem</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Tabela Destino</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Campo Destino</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Tipo Destino</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Ações</div>
     </div>
 
-{% if idmapa  %}
-   <a href="{% url 'core:add-campo' idmapa  %}">Novo registro</a>
-{% endif %}
-<p><button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
+    {% for campo in campos %}
+        <div class="row row-cols-8">
+            <div class="col-sm border">{{ campo.mapa.nome }}</div>
+            <div class="col-sm border">{{ campo.tabela_o }}</div>
+            <div class="col-sm border">{{ campo.campo_o }}</div>
+            <div class="col-sm border">{{ campo.get_campo_o_tipo_display }}</div>
+            <div class="col-sm border">{{ campo.tabela_d }}</div>
+            <div class="col-sm border">{{ campo.campo_d }}</div>
+            <div class="col-sm border">{{ campo.get_campo_d_tipo_display }}</div>
+            <div class="col-sm border" align="center">
+                {% if campo.id %}
+                    <div class="row">
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:view-campo' idmapa campo.id %}"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:edit-campo' idmapa campo.id %}"><i class="fas fa-edit"></i></a>
+                        </div>
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:del-campo' idmapa campo.id %}"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        {% if idmapa  %}
+        <a class="btn btn-outline-primary btn-sm" href="{% url 'core:add-campo' idmapa  %}" role="button">Novo registro</a>
+        {% endif %}
+        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.history.back();">Voltar</button></p>
+    </div>
+</div>
 {% endblock %}

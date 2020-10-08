@@ -81,12 +81,18 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nome
 
+class ProjetoAtivoManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__exact='A')
+
 class Projeto(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     nome = models.CharField('Nome do Projeto', max_length=100)
     descricao = models.TextField('Descrição do Projeto')
     status = models.CharField('Status', max_length=1, choices=FIELD_STATUS_PROJETO, default='I')
 
+    objects = models.Manager()
+    custom_objects = ProjetoAtivoManager()
 
     class Meta:
         db_table = 'projeto'
@@ -96,22 +102,32 @@ class Projeto(models.Model):
     def __str__(self):
         return self.nome
 
+class PeriodoAbertoManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__exact='O')
+
 class Periodo(models.Model):
     nome = models.CharField('Nome do Período', max_length=30, unique=True)
     hora_inicial = models.DateTimeField('Início')   
     hora_final = models.DateTimeField('Fim')
     status = models.CharField('Status', max_length=1, choices=FIELD_STATUS_PERIODO, default='F')
 
+    #Definindo gerenciados de dados para reconhecer apenas os lançamentos com status = "A"
+    
+    objects = models.Manager()
+    custom_objects = PeriodoAbertoManager()
+
     def __str__(self):
         return self.nome    
 
-class Meta:
-    db_table = 'periodo'
-    verbose_name_plural = 'periodos'
-    indexes = [models.Index(fields=['nome'], name='periodo_nome_idx')]   
+    class Meta:
+        db_table = 'periodo'
+        verbose_name_plural = 'periodos'
+        indexes = [models.Index(fields=['nome'], name='periodo_nome_idx')]   
 
-def __str__(self):
-    return self.nome
+    def __str__(self):
+        return self.nome
+
 
 class Fornecedor(models.Model):
     nome = models.CharField('Nome do Fornecedor', max_length=50, unique=True)
@@ -139,8 +155,8 @@ class Recurso(models.Model):
         return self.nome
 
 class Apontamento(models.Model):
-    periodo = models.ForeignKey(Periodo, on_delete=models.PROTECT)
-    projeto = models.ForeignKey(Projeto, on_delete=models.PROTECT)
+    periodo = models.ForeignKey(Periodo, on_delete=models.PROTECT,limit_choices_to={'status': 'O'},)
+    projeto = models.ForeignKey(Projeto, on_delete=models.PROTECT,limit_choices_to={'status': 'A'},)
     recurso = models.ForeignKey(Recurso, on_delete=models.PROTECT)
     data_apontamento = models.DateField('Data do Apontamento')
     hora_inicial = models.TimeField('Hora inicial')

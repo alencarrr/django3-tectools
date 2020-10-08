@@ -10,45 +10,49 @@
 
 {% block conteudo %}
 
-<div class="container-fluid" style="padding: unset;">
+<div class="container-fluid">
 
-<table class="table table-bordered table-striped">
-    <thead style='background-color:bisque;'>
-        <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Sistema Origem</th>
-            <th>Sistema Destino</th>
-            <th></th>
-            <th >Ações</th>
-        </tr>
-      </thead>
-    <tbody>
-        {% for mapa in object_list %}
-        <tr>
-            <td>{{ mapa.nome }}</td>
-            <td>{{ mapa.descricao }}</td>
-            <td>{{ mapa.sistema_origem }}</td>
-            <td>{{ mapa.sistema_destino }}</td>
-            <td><a href="{% url 'core:lista-campos' mapa.id %}">Mapear Campos</a></td>
-            <td><div align="center">
-                <a href="{% url 'core:view-mapa' mapa.id %}"><i class="fas fa-eye"></i>&ensp;</a>
-                <a href="{% url 'core:edit-mapa' mapa.id %}"><i class="fas fa-edit"></i>&ensp;</a>
-                <a href="{% url 'core:del-mapa' mapa.id %}"><i class="fas fa-trash-alt"></i>&ensp;</a>
-                <a href="{% url 'report:imprime-mapa' mapa.id %}"  target="_blank" rel="noopener"><i class="fas fa-print"></i></a>
-            </div></td>
-        </tr>
-        {% endfor %}
-    
-    </tbody>
+    <div class="row row-cols-8">
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Nome</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Descrição</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Sistema Origem</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Sistema Destino</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Ações</div>
+    </div>
 
+    {% for mapa in mapas %}
+        <div class="row row-cols-5">
 
-</table>
+            <div class="col-sm border">{{ mapa.nome }}</div>
+            <div class="col-sm border">{{ mapa.descricao }}</div>
+            <div class="col-sm border">{{ mapa.sistema_origem }}</div>
+            <div class="col-sm border">{{ mapa.sistema_destino }}</div>
 
+            <div class="col-sm border" align="center">
+                {% if mapa.id %}
+                    <div class="row">
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:view-mapa' mapa.id %}"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:edit-mapa' mapa.id %}"><i class="fas fa-edit"></i></a>
+                        </div>
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:del-mapa' mapa.id %}"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                        <div class="col-sm p-2">
+                            <a href="{% url 'report:imprime-mapa' mapa.id %}"  target="_blank" rel="noopener"><i class="fas fa-print"></i></a>
+                        </div>                        
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <a class="btn btn-outline-primary btn-sm" href="{% url 'core:add-mapa' %}" role="button">Novo registro</a>
+    </div>
 </div>
-
-<p></p>
-<a href="{% url 'core:add-mapa' %}">Novo registro</a>
 
 
 {% endblock %}

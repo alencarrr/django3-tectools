@@ -1,0 +1,17 @@
+{% extends 'base.html' %} 
+{% block title %}Mapa de Carga{% endblock %} 
+
+{% block breadcrumbs %} 
+{{ block.super }}
+<li class="breadcrumb-item">
+    <a href="#">Detalhe do Mapa</a></li>
+{% endblock %}
+
+
+{% block conteudo %}
+
+{{ apontamento.as_p }}
+
+<p><button class="btn btn-outline-secondary btn-sm" type="button" onclick="window.history.back();">Voltar</button>
+
+{% endblock conteudo %}

@@ -10,8 +10,8 @@ class MapaListView(LoginRequiredMixin,ListView):
     model = Mapa
     # queryset = Mapa.objects.all()
     template_name = "core/mapa_list.html"
-    # context_object_name = 'mapas'
-    # paginate_by = 10
+    context_object_name = 'mapas'
+    paginate_by = 10
     fields = ['nome', 'descricao','sistema_origem', 'sistema_destino']
 
 class MapaDatailView(LoginRequiredMixin,DetailView):

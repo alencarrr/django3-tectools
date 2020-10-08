@@ -15,6 +15,7 @@ urlpatterns = [
     path('logout/', views.meulogout, name='logout'),
     path('novasenha/', views.trocasenha, name='trocasenha'),
     path('apontamento/list/', views_apt.ApontamentoListView.as_view(), name='lista-apontamento'),
+    path('apontamento/view/<int:pk>/', views_apt.ApontamentoDatailView.as_view(), name='view-apontamento'),
     path('apontamento/add/', views_apt.ApontamentoCriarView.as_view(), name='add-apontamento'),
     path('apontamento/edit/<int:pk>/', views_apt.ApontamentoAlterarView.as_view(), name='edit-apontamento'),
     path('apontamento/del/<int:pk>/', views_apt.ApontamentoExcluirView.as_view(), name='del-apontamento'),            

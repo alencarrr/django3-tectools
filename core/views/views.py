@@ -32,7 +32,6 @@ def home(request):
 
     return render(request,'core/index.html')
 
-
 def trocasenha(request):
 
     if request.method == "POST":

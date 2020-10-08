@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import request
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 
@@ -17,7 +17,13 @@ class ApontamentoListView(LoginRequiredMixin,ListView):
     # paginate_by = 10
     fields = '__all__'
     exclude = ('data_criacao','data_alteracao')
-    ordering = ['-data_apontamento','-hora_inicial']
+
+class ApontamentoDatailView(LoginRequiredMixin,DetailView):
+    model = Apontamento
+    context_object_name = 'apontamento'
+    #query_set = Mapa.objects.all()
+    template_name = "core/apontamento_detail.html"
+    # success_url = reverse_lazy('core:lista-mapa')
 
 
 class ApontamentoCriarView(LoginRequiredMixin,CreateView):

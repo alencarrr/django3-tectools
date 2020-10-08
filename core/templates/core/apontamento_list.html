@@ -10,43 +10,56 @@
 
 {% block conteudo %}
 
-<table border='1px solid blue' style="width: 100%;">
-<thead style='background-color:bisque;'>
-<tr>
-    <th>Período</th>
-    <th>Projeto</th>
-    <th>Recurso</th>
-    <th>Data</th>
-    <th>Hora Inicial</th>
-    <th>Hora Final</th>
-    <th>Atividade</th>
-    <th>Ações</th>
-</tr>
+<div class="container-fluid">
 
-</thead>
+    <div class="row row-cols-8">
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Período</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Projeto</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Recurso</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Data</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Hora Inicial</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Hora Final</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Atividade</div>
+        <div class="col-sm border border-dark bg-info text-white p-2 h-25">Ações</div>
+    </div>
 
-<tbody>
     {% for apontamento in object_list %}
-    <tr>
-        <td>{{ apontamento.periodo }}</td>
-        <td>{{ apontamento.projeto }}</td>
-        <td>{{ apontamento.recurso }}</td>
-        <td>{{ apontamento.data_apontamento | date:'d/m/Y' }}</td>
-        <td>{{ apontamento.hora_inicial }}</td>        
-        <td>{{ apontamento.hora_final }}</td>        
-        <td>{{ apontamento.descricao }}</td>        
-        <td><div>
-            <a href="{% url 'core:edit-apontamento' apontamento.id %}"><i class="fas fa-edit"></i>&ensp;</a>
-            <a href="{% url 'core:del-apontamento' apontamento.id %}"><i class="fas fa-trash-alt"></i>&ensp;</a>
-            <a href="{% url 'report:imprime-apontamento' apontamento.id %}"  target="_blank" rel="noopener"><i class="fas fa-print"></i></a>
-        </div></td>
-    </tr>
+        <div class="row row-cols-8">
+            <div class="col-sm border">{{ apontamento.periodo }}</div>
+            <div class="col-sm border">{{ apontamento.projeto }}</div>
+            <div class="col-sm border">{{ apontamento.recurso }}</div>
+            <div class="col-sm border">{{ apontamento.data_apontamento | date:'d/m/Y' }}</div>
+            <div class="col-sm border">{{ apontamento.hora_inicial }}</div>
+            <div class="col-sm border">{{ apontamento.hora_final }}</div>
+            <div class="col-sm border">{{ apontamento.descricao }}</div>
+
+            
+            
+            <div class="col-sm border" align="center">
+                {% if apontamento.id %}
+                    <div class="row">
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:view-apontamento' apontamento.id %}"><i class="fas fa-eye"></i></a>
+                        </div>                        
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:edit-apontamento' apontamento.id %}"><i class="fas fa-edit"></i></a>
+                        </div>
+                        <div class="col-sm p-2">
+                            <a href="{% url 'core:del-apontamento' apontamento.id %}"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                        <div class="col-sm p-2">
+                            <a href="{% url 'report:imprime-apontamento' apontamento.id %}"  target="_blank" rel="noopener"><i class="fas fa-print"></i></a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     {% endfor %}
 
-</tbody>
-
-</table>
-<a href="{% url 'core:add-apontamento' %}">Novo registro</a>
-<p><button type="button" class="btn" onclick="window.history.back();">Voltar</button></p>
+    <div class="row">
+        <a class="btn btn-outline-primary btn-sm" href="{% url 'core:add-apontamento' %}" role="button">Novo registro</a>
+        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.history.back();">Voltar</button></p>
+    </div>
+</div>
 
 {% endblock %}
